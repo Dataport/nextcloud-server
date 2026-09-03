@@ -11,6 +11,7 @@ namespace OCP\Teams;
 
 use OCP\AppFramework\Attribute\Consumable;
 use OCP\AppFramework\Attribute\Implementable;
+use OCP\AppFramework\Http\DataResponse;
 
 /**
  * Provides the exclusive folder belonging to a team.
@@ -23,6 +24,21 @@ use OCP\AppFramework\Attribute\Implementable;
 #[Consumable(since: '35.0.0')]
 #[Implementable(since: '35.0.0')]
 interface ITeamFolderProvider extends ITeamResourceProvider {
+
+	/**
+	 * Return the list of team folders that can be linked to the team.
+	 *
+	 * @since 35.0.0
+	 */
+	public function getLinkableTeamFolders(string $circleId): DataResponse;
+	
+	/**
+	 * Link a team folder to the team.
+	 *
+	 * @since 35.0.0
+	 */
+	public function linkTeamFolder(string $circleId, int $folderId): DataResponse;
+
 	/**
 	 * Return the folder exclusively linked to the team.
 	 *
